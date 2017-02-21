@@ -4,63 +4,139 @@ var unansweredQuestions; //holds total for unanswered questions
 var timer; //timer for game
 var answerChoices; //array of answer choices for the question
 var question; //question for the user to answer
-var correctAnswer; //correct answer to the question
+var answerIndex; //correct answer to the question
+var triviaList;
 
 function init() {
-	// correctGuesses = 0;
-	// incorrectGuesses = 0;
-	// unansweredQuestions = 0;
+	$("#start").show();
+	$("#time").hide();
+	$("#questions").hide();
+	$("#results").hide();
+
+	$("#questions").html("");
+	$("#results").html("");
+
+	correctGuesses = 0;
+	incorrectGuesses = 0;
+	unansweredQuestions = 0;
+	triviaList = [];
 
 	timer = {
-		time: 30,
+		time: 3,
+		interval: null,
 		start: function() {
-			intervalId = setInterval(timer.count, 1000);
+			timer.interval = setInterval(timer.count, 1000);
+			$('#time').html(timer.time);
 		},
 		count: function() {
 			timer.time--;
-			$('.time').html(timer.time);
+			$('#time').html(timer.time);
+			if (timer.time == 0) {
+				clearInterval(timer.interval);
+				generateResults();
+
+			}
 		}
 	}
-	$('.time').html(timer.time);
-	timer.start();
 
-	var question1 = generateQuestion('What is your favorite color?', ['blue', 'green', 'red'], 'blue');
+	var question1 = generateQuestion('What is your favorite color?', ['blue', 'green', 'red'], 0); //correct answer is index of the right answer
 	console.log(question1);
-	var question2 = generateQuestion('How old is this car?', ['10', '20', '30'], '20');
-	console.log(question1);
+	displayQuestion('question1', question1);
 
-	displayQuestions(question1);
-	displayQuestions(question2);
+	var question2 = generateQuestion('How old is this car?', ['10', '20', '30'], 1);
+	console.log(question2);
+	displayQuestion('question2', question2);
+
 }
-
 
 function generateQuestion(question, answerArray, answer) {
 	var question = {
-		questionText: question,
-		questionAnswers: answerArray,
-		correctAnswer: answer 
+		text: question,
+		answers: answerArray,
+		answerIndex: answer 
 	}
 
 	return question;
 }
 
-function displayQuestions(question) {
-	var output = $('<div>');
-	output.append(question.questionText);
-	$('.test').append(output);
+function displayQuestion(name, question) {
+	var output = $('<h2>');
+	output.append(question.text);
+	$('#questions').append(output);
+	triviaList.push({
+		name: name,
+		question: question
+	});
 
-	for (var i = 0; i < question.questionAnswers.length; i++) {
+	if (question.answers && question.answers.length > 0) {
+		//best practice to wrap for loop with check if looping through an array
+		for (var i = 0; i < question.answers.length; i++) {
 
-		//create radio buttons with labels
-		var answers = $('<input type="radio" name="radio-choice" id="radio-choice-' + question.questionAnswers[i] + '" value="' + question.questionAnswers[i] + '"/><label for="radio-choice-' + i + '">' + question.questionAnswers[i] + '</label>');
+			var id = name + '-' + question.answers[i];
+			var answers = $('<input type="radio"/>');
+			answers.attr('name', name);
+			answers.attr('id', id);
+			answers.attr('value', i);
 
-		console.log(answers);
+			var label = $('<label>').html(question.answers[i]);
+			label.attr('for', id);
 
-     	$(".test").append(answers);
-	
+			console.log(answers);
+
+	     	$('#questions').append(answers);
+	     	$('#questions').append(label);
+		
+		}
 	}
+}
+
+function generateResults() {
+	
+	if (triviaList && triviaList.length > 0) {
+		for (var i = 0; i < triviaList.length; i++) {
+			var value = $('input[name="' + triviaList[i].name + '"]:checked').val();
+			console.log(value);
+			if (value == triviaList[i].question.answerIndex) {
+				correctGuesses++;
+			} else if (!value) {
+				unansweredQuestions++;
+			} else {
+				incorrectGuesses++;
+			}
+		}
+	}
+
+	$("#time").hide();
+	$("#questions").hide();
+
+	var cg = $("<div>").html("Correct Guesses: " + correctGuesses);
+	var uaq = $("<div>").html("Unanswered Questions: " + unansweredQuestions);
+	var iq = $("<div>").html("Incorrect Guesses: " + incorrectGuesses);
+	var restart = $("<button>").html("Restart").on("click", function() {
+		init();
+	});
+	$("#results").append(cg);
+	$("#results").append(uaq);
+	$("#results").append(iq);
+	$("#results").append(restart);
+
+	$("#results").show();
+}
+
+function startGame() {
+	$("#start").hide();
+	$("#time").show();
+	$("#questions").show();
+	timer.start();
+
 }
 
 window.onload = function() {
 	init();
 }
+
+
+//create radio buttons with labels
+// var answers = $('<input type="radio" name="radio-choice-' + question.answers[0] + '" id="radio-choice-' + question.answers[i] 
+// 	+ '" value="' + i + '"/><label for="radio-choice-' 
+// 	+ question.answers[i] + '">' + question.answers[i] + '</label>');
