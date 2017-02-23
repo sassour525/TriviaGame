@@ -12,6 +12,7 @@ function init() {
 	$("#time").hide();
 	$("#questions").hide();
 	$("#results").hide();
+	$("#done-button").hide();
 
 	$("#questions").html("");
 	$("#results").html("");
@@ -22,7 +23,7 @@ function init() {
 	triviaList = [];
 
 	timer = {
-		time: 3,
+		time: 120,
 		interval: null,
 		start: function() {
 			timer.interval = setInterval(timer.count, 1000);
@@ -40,12 +41,35 @@ function init() {
 	}
 
 	var question1 = generateQuestion('What is your favorite color?', ['blue', 'green', 'red'], 0); //correct answer is index of the right answer
-	console.log(question1);
 	displayQuestion('question1', question1);
 
 	var question2 = generateQuestion('How old is this car?', ['10', '20', '30'], 1);
-	console.log(question2);
 	displayQuestion('question2', question2);
+
+	var question3 = generateQuestion('What is your favorite color?', ['blue', 'green', 'red'], 0); //correct answer is index of the right answer
+	displayQuestion('question3', question3);
+
+	var question4 = generateQuestion('How old is this car?', ['10', '20', '30'], 1);
+	displayQuestion('question4', question4);
+
+	var question5 = generateQuestion('What is your favorite color?', ['blue', 'green', 'red'], 0); //correct answer is index of the right answer
+	displayQuestion('question5', question5);
+
+	var question6 = generateQuestion('How old is this car?', ['10', '20', '30'], 1);
+	displayQuestion('question6', question6);
+
+	var question7 = generateQuestion('How old is this car?', ['10', '20', '30'], 1);
+	displayQuestion('question7', question7);
+
+	var question8 = generateQuestion('How old is this car?', ['10', '20', '30'], 1);
+	displayQuestion('question8', question8);
+
+	var question9 = generateQuestion('How old is this car?', ['10', '20', '30'], 1);
+	displayQuestion('question9', question9);
+
+	var question10 = generateQuestion('How old is this car?', ['10', '20', '30'], 1);
+	displayQuestion('question10', question10);
+
 
 }
 
@@ -80,8 +104,6 @@ function displayQuestion(name, question) {
 
 			var label = $('<label>').html(question.answers[i]);
 			label.attr('for', id);
-
-			console.log(answers);
 
 	     	$('#questions').append(answers);
 	     	$('#questions').append(label);
@@ -120,13 +142,17 @@ function generateResults() {
 	$("#results").append(iq);
 	$("#results").append(restart);
 
+	$("#done-button").hide();
 	$("#results").show();
+	clearInterval(timer.interval);
+
 }
 
 function startGame() {
 	$("#start").hide();
 	$("#time").show();
 	$("#questions").show();
+	$("#done-button").show();
 	timer.start();
 
 }

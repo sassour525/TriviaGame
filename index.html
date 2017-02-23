@@ -13,7 +13,11 @@
 </head>
 <body>
 
-	<h1 id="title">Trivial Trivia</h1>
+<!-- 	<div>
+		<img class="background" src="assets/images/bg-img.png">
+	</div> -->
+
+<!-- 	<h1 id="title">Trivial Trivia</h1>
 
 	<div id="start">
 		<button onclick="startGame()">Start</button>
@@ -23,7 +27,32 @@
 
 	<div id="questions"></div>
 
-	<div id="results"></div>
+	<div id="results"></div> -->
+
+	<div class="container">
+		<div class="col-lrg-2"></div>
+		<div class="col-lrg-8">
+			<div class="row title">
+				<h1 id="title">Trivial Trivia</h1>
+			</div>
+			<div class="row game-content">
+				<div id="start">
+					<button id="start-button" onclick="startGame()">Start</button>
+				</div>
+
+				<div id="time"></div>
+
+				<div id="questions"></div>
+
+				<div id="done-btn">
+					<button id="done-button" onclick="generateResults()">Done</button>
+				</div>
+
+				<div id="results"></div>
+			</div>
+		</div>
+		<div class="col-lrg-2"></div>
+	</div>
 
 </body>
 </html>
