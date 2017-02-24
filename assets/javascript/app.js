@@ -40,34 +40,34 @@ function init() {
 		}
 	}
 
-	var question1 = generateQuestion('What is your favorite color?', ['blue', 'green', 'red'], 0); //correct answer is index of the right answer
+	var question1 = generateQuestion('Bordeaux is a type of wine?', ['True', 'False'], 1); //correct answer is index of the right answer
 	displayQuestion('question1', question1);
 
-	var question2 = generateQuestion('How old is this car?', ['10', '20', '30'], 1);
+	var question2 = generateQuestion('What adds a bitter taste to beer?', ['Malt', 'Yeast', 'Hops', 'Barley'], 2);
 	displayQuestion('question2', question2);
 
-	var question3 = generateQuestion('What is your favorite color?', ['blue', 'green', 'red'], 0); //correct answer is index of the right answer
+	var question3 = generateQuestion('What is considered a "mature" wine?', ['1yr', '4yrs', '6yrs', '7yrs'], 3); //correct answer is index of the right answer
 	displayQuestion('question3', question3);
 
-	var question4 = generateQuestion('How old is this car?', ['10', '20', '30'], 1);
+	var question4 = generateQuestion('How many yrs is the lease for the Guiness brewery in Dublin, Ireland?', ['10yrs', '9,000yrs', '3,000yrs', '200yrs'], 1);
 	displayQuestion('question4', question4);
 
-	var question5 = generateQuestion('What is your favorite color?', ['blue', 'green', 'red'], 0); //correct answer is index of the right answer
+	var question5 = generateQuestion('What is the component in wine that can cause a headache?', ['Yeast', 'Salt', 'Tannins', 'Sugar'], 2); //correct answer is index of the right answer
 	displayQuestion('question5', question5);
 
-	var question6 = generateQuestion('How old is this car?', ['10', '20', '30'], 1);
+	var question6 = generateQuestion('How many oz are in a pint?', ['10oz', '16oz', '8oz', '12oz'], 1);
 	displayQuestion('question6', question6);
 
-	var question7 = generateQuestion('How old is this car?', ['10', '20', '30'], 1);
+	var question7 = generateQuestion('Which one of these does not mean "Cheers"?', ['Salude', 'Slainte', 'Cheers', 'Huzzah'], 3);
 	displayQuestion('question7', question7);
 
-	var question8 = generateQuestion('How old is this car?', ['10', '20', '30'], 1);
+	var question8 = generateQuestion('What is a 22oz beer commonly referred to as?', ['Bomber', 'Keg', 'Bushel', 'Tank'], 0);
 	displayQuestion('question8', question8);
 
-	var question9 = generateQuestion('How old is this car?', ['10', '20', '30'], 1);
+	var question9 = generateQuestion('Why do resturants give a sample of wine before pouring you a glass?', ['To make sure it is not spoiled', 'As a joke', 'To be efficent', 'For fun'], 0);
 	displayQuestion('question9', question9);
 
-	var question10 = generateQuestion('How old is this car?', ['10', '20', '30'], 1);
+	var question10 = generateQuestion('What is the alcohol content of the strongest beer in the world?', ['50%', '28.5%', '70.2%', '67.5%'], 3);
 	displayQuestion('question10', question10);
 
 
